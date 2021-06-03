@@ -26,7 +26,7 @@ cc.Class({
         mainGame: cc.Node,
         block: cc.Prefab,
         score: cc.Label,
-        recored: cc.Label,
+        record: cc.Label,
         winGame: cc.Node,
         loseGame: cc.Node,
         _isChange: false,
@@ -37,6 +37,7 @@ cc.Class({
     onLoad() {
         this.initObj();
         this.eventHandler();
+        this.getScoreStorge();
     },
 
     initObj() {
@@ -335,6 +336,23 @@ cc.Class({
         }
         if(this._isChange) {
             this.addNum();
+        }
+    },
+
+    getScoreStorge() {
+        let scoreStorge = cc.sys.localStorage.getItem('bestScore');
+        if (scoreStorge !== null) {
+            this.record.string = JSON.parse(scoreStorge);
+        } else {
+            this.record.string = 0;
+        }
+    },
+
+    checkScore() {
+        let newScore = parseInt(this.score.string);
+        if (newScore > this.record.string) {
+            cc.sys.localStorage.setItem('bestScore', JSON.stringify(newScore));
+            this.record.string = newScore;
         }
     },
 
