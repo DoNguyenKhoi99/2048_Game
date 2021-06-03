@@ -70,15 +70,17 @@ cc.Class({
     },
 
     onKeyDown(event) {
-        this._isChange = false;
-        switch(event.keyCode) {
-            case 37:
-            case 39:
-                this.checkLeftRight(event.keyCode);  
-                break;
-            case 38: 
-            case 40:
-                this.checkUpDown(event.keyCode);
+        if(this._isCLick){
+            this._isChange = false;
+            switch(event.keyCode) {
+                case 37:
+                case 39:
+                    this.checkLeftRight(event.keyCode);  
+                    break;
+                case 38: 
+                case 40:
+                    this.checkUpDown(event.keyCode);
+            }
         }
     },
 
@@ -111,7 +113,7 @@ cc.Class({
                 this._endX = this._startPoint.x - this._endPoint.x;
                 this._endY = this._startPoint.y - this._endPoint.y;
                 this._vector = cc.v2(this._endX, this._endY);
-                this.mouseEvent();
+                this.reflectCLick();
             })
         }
     },
@@ -132,6 +134,22 @@ cc.Class({
         }
     },
 
+    reflectCLick() {
+        let startVec = this._startPoint;
+        let endVec = this._endPoint;
+        let pointsVec = endVec.sub(startVec);
+        let vecLength = pointsVec.mag();
+        if (vecLength > MIN_LENGTH) {
+            if (Math.abs(pointsVec.x) > Math.abs(pointsVec.y)) {
+                if (pointsVec.x > 0) this.mouseEvent(DIRECTION.RIGHT);
+                else this.mouseEvent(DIRECTION.LEFT);
+            } else {
+                if (pointsVec.y > 0) this.mouseEvent(DIRECTION.UP);
+                else this.mouseEvent(DIRECTION.DOWN);
+            }
+        }
+    },
+
     touchEvent(direction) {
         switch (direction) {
             case DIRECTION.RIGHT: 
@@ -145,24 +163,18 @@ cc.Class({
             
         }
     },
-
-    mouseEvent() {
-        if (this._vector.mag() > MIN_LENGTH) {
-            if (this._canMove) {
-                this._canMove = false;
-                if (this._vector.x < 0 && this._vector.y < 50 && this._vector.y > -50) {
-                    this.blockMoveRight();
-                } else if (this._vector.x > 0 && this._vector.y < 50 && this._vector.y > -50) {
-                    this.blockMoveLeft();
-                }
-                else if (this._vector.y < 0 && this._vector.x < 50 && this._vector.x > -50) {
-                    this.blockMoveUp();
-                }
-                else if (this._vector.y > 0 && this._vector.x < 50 && this._vector.x > -50) {
-                    this.blockMoveDown();
-                }
-            }
-
+ 
+    mouseEvent(direction) {
+        switch (direction) {
+            case DIRECTION.RIGHT: 
+            case DIRECTION.LEFT:
+                this.checkLeftRight(direction);
+                break;
+            case DIRECTION.UP: 
+            case DIRECTION.DOWN: 
+                this.checkUpDown(direction)
+                break;
+            
         }
     },
 
