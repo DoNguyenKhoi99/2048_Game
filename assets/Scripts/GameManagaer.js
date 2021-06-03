@@ -26,14 +26,18 @@ cc.Class({
         mainGame: cc.Node,
         block: cc.Prefab,
         score: cc.Label,
-        recored: cc.Label,
+        record: cc.Label,
         winGame: cc.Node,
         loseGame: cc.Node,
         _isChange: false,
+        _restart: false,
     },
 
     onLoad() {
-        //cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
+<<<<<<< HEAD
+        this.getScoreStorge();
+=======
+>>>>>>> master
         this.initObj();
         this.eventHandler();
     },
@@ -41,9 +45,7 @@ cc.Class({
     initObj() {
         this.loseGame.active = false;
         this.winGame.active = false;
-        this._showWinLose = false;
         this.score.string = 0; 
-        this.initBlock();
         this.addNum();
         this.addNum();
     },
@@ -70,22 +72,23 @@ cc.Class({
     },
 
     onKeyDown(event) {
-        this._isChange = false;
-        switch(event.keyCode) {
-            case 37:
-            case 39:
-                this.checkLeftRight(event.keyCode);  
-                break;
-            case 38: 
-            case 40:
-                this.checkUpDown(event.keyCode);
+        if(this._isCLick){
+            this._isChange = false;
+            switch(event.keyCode) {
+                case 37:
+                case 39:
+                    this.checkLeftRight(event.keyCode);  
+                    break;
+                case 38: 
+                case 40:
+                    this.checkUpDown(event.keyCode);
+            }
         }
     },
 
     eventHandler() {
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
-
-        if (cc.sys.isMobile) {
+        if (cc.sys.IPAD || cc.sys.isMobile) {
             this.mainGame.on("touchstart", (event) => {
                 this._startPoint = event.getLocation();
             })
@@ -98,7 +101,7 @@ cc.Class({
                 this.reflectTouch();
             })
         }
-        if (cc.sys.IPAD || cc.sys.DESKTOP_BROWSER) {
+        if (cc.sys.DESKTOP_BROWSER) {
             this.mainGame.on("mousedown", (event) => {
                 this._isCLick = false;
                 this._startPoint = event.getLocation();
@@ -111,7 +114,7 @@ cc.Class({
                 this._endX = this._startPoint.x - this._endPoint.x;
                 this._endY = this._startPoint.y - this._endPoint.y;
                 this._vector = cc.v2(this._endX, this._endY);
-                this.mouseEvent();
+                this.reflectCLick();
             })
         }
     },
@@ -132,7 +135,23 @@ cc.Class({
         }
     },
 
+    reflectCLick() {
+        let pointsVec = this._endPoint.sub(this._startPoint);
+        let vecLength = pointsVec.mag();
+        if (vecLength > MIN_LENGTH) {
+            if (Math.abs(pointsVec.x) > Math.abs(pointsVec.y)) {
+                if (pointsVec.x > 0) this.mouseEvent(DIRECTION.RIGHT);
+                else this.mouseEvent(DIRECTION.LEFT);
+            } else {
+                if (pointsVec.y > 0) this.mouseEvent(DIRECTION.UP);
+                else this.mouseEvent(DIRECTION.DOWN);
+            }
+        }
+    },
+
     touchEvent(direction) {
+        if(this._restart) return;
+        this._restart = false;
         switch (direction) {
             case DIRECTION.RIGHT: 
             case DIRECTION.LEFT:
@@ -145,24 +164,20 @@ cc.Class({
             
         }
     },
-
-    mouseEvent() {
-        if (this._vector.mag() > MIN_LENGTH) {
-            if (this._canMove) {
-                this._canMove = false;
-                if (this._vector.x < 0 && this._vector.y < 50 && this._vector.y > -50) {
-                    this.blockMoveRight();
-                } else if (this._vector.x > 0 && this._vector.y < 50 && this._vector.y > -50) {
-                    this.blockMoveLeft();
-                }
-                else if (this._vector.y < 0 && this._vector.x < 50 && this._vector.x > -50) {
-                    this.blockMoveUp();
-                }
-                else if (this._vector.y > 0 && this._vector.x < 50 && this._vector.x > -50) {
-                    this.blockMoveDown();
-                }
-            }
-
+ 
+    mouseEvent(direction) {
+        if(this._restart) return;
+        this._restart = false;
+        switch (direction) {
+            case DIRECTION.RIGHT: 
+            case DIRECTION.LEFT:
+                this.checkLeftRight(direction);
+                break;
+            case DIRECTION.UP: 
+            case DIRECTION.DOWN: 
+                this.checkUpDown(direction)
+                break;
+            
         }
     },
 
@@ -249,9 +264,11 @@ cc.Class({
                 }
             }
         }
+        this.checkScore()
     },
 
     clickRestart() {
+        this._restart = true;
         ARR_BLOCK = [[0,0,0,0], [0,0,0,0],
                      [0,0,0,0], [0,0,0,0]];
         this.initObj();
@@ -324,10 +341,31 @@ cc.Class({
         }
     },
 
+     getScoreStorge() {
+        let scoreStorge = cc.sys.localStorage.getItem('bestScore');
+        if (scoreStorge !== null) {
+            this.record.string = JSON.parse(scoreStorge);
+        } else {
+            this.record.string = 0;
+        }
+        
+    },
+
+    checkScore() {
+        let newScore = parseInt(this.score.string);
+        if (newScore > this.record.string) {
+            cc.sys.localStorage.setItem('bestScore', JSON.stringify(newScore));
+            cc.log("123")
+            this.record.string = newScore;
+        }
+    },
+
     update() {
         this.checkWin();
         if(this.checkLose()) {
             this.loseGame.active = true;
         };
     },
+
+
 });
