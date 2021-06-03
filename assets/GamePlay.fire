@@ -1470,34 +1470,10 @@
     "target": {
       "__id__": 5
     },
-<<<<<<< HEAD
-    "_enabled": true,
-    "mainGame": {
-      "__id__": 22
-    },
-    "block": {
-      "__uuid__": "190632b0-246f-48b7-8484-faba03d28eb4"
-    },
-    "score": {
-      "__id__": 14
-    },
-    "record": {
-      "__id__": 20
-    },
-    "winGame": {
-      "__id__": 32
-    },
-    "loseGame": {
-      "__id__": 42
-    },
-    "_isChange": false,
-    "_id": "a0gETN2uNEr4BB1NPa8GPv"
-=======
     "component": "",
     "_componentId": "016acPX4gdMY7UAGkEsBhhU",
     "handler": "clickRestart",
     "customEventData": ""
->>>>>>> master
   },
   {
     "__type__": "cc.Node",
@@ -2402,7 +2378,7 @@
       "width": 600,
       "height": 640
     },
-    "_fitWidth": true,
+    "_fitWidth": false,
     "_fitHeight": true,
     "_id": "b9Sr0cpUZHjJrCvJvDN4Xi"
   }
