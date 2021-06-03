@@ -31,6 +31,7 @@ cc.Class({
         loseGame: cc.Node,
         _isChange: false,
         _restart: false,
+        _score: 0
     },
 
     onLoad() {
@@ -212,7 +213,12 @@ cc.Class({
         if(newArr.length > 0) {
             let randomXY = newArr[Math.random() * newArr.length >> 0];
             let number = Math.floor(Math.random() * 4);
-            number < 3 ? ARR_BLOCK[randomXY.x][randomXY.y] = 2 : ARR_BLOCK[randomXY.x][randomXY.y] = 4;   
+            if(number < 3) {
+                ARR_BLOCK[randomXY.x][randomXY.y] = 2;
+            }
+            else {
+                ARR_BLOCK[randomXY.x][randomXY.y] = 4;
+            } 
         }
         this.initBlock();
     },
@@ -250,16 +256,8 @@ cc.Class({
         }
     },
 
-    updateScore() {
-        let total = 0;
-        for(let row = 0; row < GAME_CONFIG.ROW; row++) {
-            for(let col = 0; col < GAME_CONFIG.COL; col++) {
-                if(ARR_BLOCK[row][col] > 2) {
-                    total += ARR_BLOCK[row][col];
-                    this.score.string = total;
-                }
-            }
-        }
+    updateScore(value) {
+        this.score.string = this._score;
     },
 
     clickRestart() {
@@ -278,6 +276,7 @@ cc.Class({
                     if(ARR_BLOCK[row][col] == ARR_BLOCK[row][col + 1]) {
                         ARR_BLOCK[row][col] += ARR_BLOCK[row][col + 1];
                         ARR_BLOCK[row][col + 1] = 0;
+                        this._score += ARR_BLOCK[row][col];
                     }
                 }
                 ARR_BLOCK[row] = this.slideLeftOrUp(ARR_BLOCK[row]);
@@ -288,6 +287,7 @@ cc.Class({
                     if(ARR_BLOCK[row][col] == ARR_BLOCK[row][col - 1]) {
                         ARR_BLOCK[row][col] += ARR_BLOCK[row][col - 1];
                         ARR_BLOCK[row][col - 1] = 0;
+                        this._score += ARR_BLOCK[row][col];
                     }
                 }
                 ARR_BLOCK[row] = this.slideRightOrDown(ARR_BLOCK[row]);
@@ -312,6 +312,7 @@ cc.Class({
                     if(newArr[m] == newArr[m + 1]) {
                         newArr[m] += newArr[m + 1];
                         newArr[m + 1] = 0;
+                        this._score += newArr[m];
                     }
                 }
                 newArr = this.slideLeftOrUp(newArr);
@@ -322,6 +323,7 @@ cc.Class({
                     if(newArr[m] == newArr[m - 1]) {
                         newArr[m] += newArr[m - 1];
                         newArr[m - 1] = 0;
+                        this._score += newArr[m];
                     }
                 }
                 newArr = this.slideRightOrDown(newArr);

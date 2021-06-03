@@ -32,7 +32,8 @@ cc.Class({
         winGame: cc.Node,
         loseGame: cc.Node,
         _isChange: false,
-        _restart: false
+        _restart: false,
+        _score: 0
     },
 
     onLoad: function onLoad() {
@@ -45,6 +46,7 @@ cc.Class({
         this.score.string = 0;
         this.addNum();
         this.addNum();
+        this._restart = false;
     },
     initBlock: function initBlock() {
         this.mainGame.removeAllChildren();
@@ -201,7 +203,11 @@ cc.Class({
         if (newArr.length > 0) {
             var randomXY = newArr[Math.random() * newArr.length >> 0];
             var number = Math.floor(Math.random() * 4);
-            number < 3 ? ARR_BLOCK[randomXY.x][randomXY.y] = 2 : ARR_BLOCK[randomXY.x][randomXY.y] = 4;
+            if (number < 3) {
+                ARR_BLOCK[randomXY.x][randomXY.y] = 2;
+            } else {
+                ARR_BLOCK[randomXY.x][randomXY.y] = 4;
+            }
         }
         this.initBlock();
     },
@@ -235,16 +241,8 @@ cc.Class({
             }
         }
     },
-    updateScore: function updateScore() {
-        var total = 0;
-        for (var row = 0; row < GAME_CONFIG.ROW; row++) {
-            for (var col = 0; col < GAME_CONFIG.COL; col++) {
-                if (ARR_BLOCK[row][col] > 2) {
-                    total += ARR_BLOCK[row][col];
-                    this.score.string = total;
-                }
-            }
-        }
+    updateScore: function updateScore(value) {
+        this.score.string = this._score;
     },
     clickRestart: function clickRestart() {
         this._restart = true;
@@ -260,6 +258,7 @@ cc.Class({
                     if (ARR_BLOCK[row][col] == ARR_BLOCK[row][col + 1]) {
                         ARR_BLOCK[row][col] += ARR_BLOCK[row][col + 1];
                         ARR_BLOCK[row][col + 1] = 0;
+                        this._score += ARR_BLOCK[row][col];
                     }
                 }
                 ARR_BLOCK[row] = this.slideLeftOrUp(ARR_BLOCK[row]);
@@ -270,6 +269,7 @@ cc.Class({
                     if (ARR_BLOCK[row][_col] == ARR_BLOCK[row][_col - 1]) {
                         ARR_BLOCK[row][_col] += ARR_BLOCK[row][_col - 1];
                         ARR_BLOCK[row][_col - 1] = 0;
+                        this._score += ARR_BLOCK[row][_col];
                     }
                 }
                 ARR_BLOCK[row] = this.slideRightOrDown(ARR_BLOCK[row]);
@@ -293,6 +293,7 @@ cc.Class({
                     if (newArr[m] == newArr[m + 1]) {
                         newArr[m] += newArr[m + 1];
                         newArr[m + 1] = 0;
+                        this._score += newArr[m];
                     }
                 }
                 newArr = this.slideLeftOrUp(newArr);
@@ -303,6 +304,7 @@ cc.Class({
                     if (newArr[_m] == newArr[_m - 1]) {
                         newArr[_m] += newArr[_m - 1];
                         newArr[_m - 1] = 0;
+                        this._score += newArr[_m];
                     }
                 }
                 newArr = this.slideRightOrDown(newArr);

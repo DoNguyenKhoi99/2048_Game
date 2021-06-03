@@ -444,14 +444,9 @@
     "meta": 1622706587726,
     "relativePath": "image/unnamed.png"
   },
-  "016ac3d7-e207-4c63-b500-1a412c061854": {
-    "asset": 1622714478099,
-    "meta": 1622714533014,
-    "relativePath": "Scripts/GameManagaer.js"
-  },
   "b29c01d9-5fb7-4030-b627-32304e09fe25": {
-    "asset": 1622715391711,
-    "meta": 1622715391724,
+    "asset": 1622715861185,
+    "meta": 1622715861192,
     "relativePath": "GamePlay.fire"
   },
   "a2382603-8e16-43ab-9e9a-f630e61c8529": {
@@ -465,8 +460,13 @@
     "relativePath": "image/Background.jpeg"
   },
   "e74a8138-1c3e-4af7-b0ff-f5de883aadec": {
-    "asset": 1622715283347,
-    "meta": 1622715285916,
+    "asset": 1622715542365,
+    "meta": 1622715597104,
     "relativePath": "Scripts/BlockController.js"
+  },
+  "016ac3d7-e207-4c63-b500-1a412c061854": {
+    "asset": 1622717985090,
+    "meta": 1622717986810,
+    "relativePath": "Scripts/GameManagaer.js"
   }
 }
