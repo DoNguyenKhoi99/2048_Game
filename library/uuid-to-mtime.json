@@ -425,12 +425,12 @@
     "relativePath": "Prefabs"
   },
   "efc3fec6-35f8-4411-8f85-6734d1f2595a": {
-    "asset": 1622706567132,
+    "asset": 1622718077926,
     "meta": 1622706567131,
     "relativePath": "Scripts"
   },
   "36696897-2219-48e8-8e9b-4f91ccdc2066": {
-    "asset": 1622706567133,
+    "asset": 1622715189509,
     "meta": 1622706567132,
     "relativePath": "image"
   },
@@ -444,29 +444,29 @@
     "meta": 1622706587726,
     "relativePath": "image/unnamed.png"
   },
-  "b29c01d9-5fb7-4030-b627-32304e09fe25": {
-    "asset": 1622715861185,
-    "meta": 1622715861192,
-    "relativePath": "GamePlay.fire"
-  },
   "a2382603-8e16-43ab-9e9a-f630e61c8529": {
     "asset": 1622714752235,
-    "meta": 1622715189539,
+    "meta": 1622718482754,
     "relativePath": "image/TitleGame.png"
   },
   "554b2dec-a181-46f1-9267-98e94c41a02c": {
     "asset": 1622715176596,
-    "meta": 1622715182860,
+    "meta": 1622718482603,
     "relativePath": "image/Background.jpeg"
   },
   "e74a8138-1c3e-4af7-b0ff-f5de883aadec": {
     "asset": 1622715542365,
-    "meta": 1622715597104,
+    "meta": 1622718482756,
     "relativePath": "Scripts/BlockController.js"
   },
+  "b29c01d9-5fb7-4030-b627-32304e09fe25": {
+    "asset": 1622718488284,
+    "meta": 1622718488296,
+    "relativePath": "GamePlay.fire"
+  },
   "016ac3d7-e207-4c63-b500-1a412c061854": {
-    "asset": 1622717985090,
-    "meta": 1622717986810,
+    "asset": 1622718425004,
+    "meta": 1622718427909,
     "relativePath": "Scripts/GameManagaer.js"
   }
 }

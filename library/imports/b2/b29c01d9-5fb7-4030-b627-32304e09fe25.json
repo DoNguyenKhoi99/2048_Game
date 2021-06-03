@@ -2353,7 +2353,7 @@
     "score": {
       "__id__": 14
     },
-    "recored": {
+    "record": {
       "__id__": 20
     },
     "winGame": {
@@ -2364,6 +2364,7 @@
     },
     "_isChange": false,
     "_restart": false,
+    "_score": 0,
     "_id": "a0gETN2uNEr4BB1NPa8GPv"
   },
   {
