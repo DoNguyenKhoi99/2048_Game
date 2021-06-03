@@ -8,7 +8,7 @@ var COLOR = {
     0: cc.color('C0B4A4'),
     2: cc.color('E9DDD1'),
     4: cc.color('EAD9BE'),
-    8: cc.color('EAD9BE'),
+    8: cc.color('F0E2A5'),
     16: cc.color('F28151'),
     32: cc.color('F26A4F'),
     64: cc.color('F2472E'),

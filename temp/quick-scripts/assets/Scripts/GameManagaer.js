@@ -42,7 +42,6 @@ cc.Class({
     initObj: function initObj() {
         this.loseGame.active = false;
         this.winGame.active = false;
-        this._showWinLose = false;
         this.score.string = 0;
         this.addNum();
         this.addNum();
@@ -85,8 +84,7 @@ cc.Class({
         var _this = this;
 
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
-
-        if (cc.sys.isMobile) {
+        if (cc.sys.IPAD || cc.sys.isMobile) {
             this.mainGame.on("touchstart", function (event) {
                 _this._startPoint = event.getLocation();
             });
@@ -99,7 +97,7 @@ cc.Class({
                 _this.reflectTouch();
             });
         }
-        if (cc.sys.IPAD || cc.sys.DESKTOP_BROWSER) {
+        if (cc.sys.DESKTOP_BROWSER) {
             this.mainGame.on("mousedown", function (event) {
                 _this._isCLick = false;
                 _this._startPoint = event.getLocation();
@@ -158,7 +156,6 @@ cc.Class({
     mouseEvent: function mouseEvent(direction) {
         if (this._restart) return;
         this._restart = false;
-        cc.error("click");
         switch (direction) {
             case DIRECTION.RIGHT:
             case DIRECTION.LEFT:

@@ -31,20 +31,18 @@ cc.Class({
         recored: cc.Label,
         winGame: cc.Node,
         loseGame: cc.Node,
-        _isChange: false
+        _isChange: false,
+        _restart: false
     },
 
     onLoad: function onLoad() {
-        //cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         this.initObj();
         this.eventHandler();
     },
     initObj: function initObj() {
         this.loseGame.active = false;
         this.winGame.active = false;
-        this._showWinLose = false;
         this.score.string = 0;
-        this.initBlock();
         this.addNum();
         this.addNum();
     },
@@ -86,8 +84,7 @@ cc.Class({
         var _this = this;
 
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
-
-        if (cc.sys.isMobile) {
+        if (cc.sys.IPAD || cc.sys.isMobile) {
             this.mainGame.on("touchstart", function (event) {
                 _this._startPoint = event.getLocation();
             });
@@ -100,7 +97,7 @@ cc.Class({
                 _this.reflectTouch();
             });
         }
-        if (cc.sys.IPAD || cc.sys.DESKTOP_BROWSER) {
+        if (cc.sys.DESKTOP_BROWSER) {
             this.mainGame.on("mousedown", function (event) {
                 _this._isCLick = false;
                 _this._startPoint = event.getLocation();
@@ -131,9 +128,7 @@ cc.Class({
         }
     },
     reflectCLick: function reflectCLick() {
-        var startVec = this._startPoint;
-        var endVec = this._endPoint;
-        var pointsVec = endVec.sub(startVec);
+        var pointsVec = this._endPoint.sub(this._startPoint);
         var vecLength = pointsVec.mag();
         if (vecLength > MIN_LENGTH) {
             if (Math.abs(pointsVec.x) > Math.abs(pointsVec.y)) {
@@ -144,6 +139,8 @@ cc.Class({
         }
     },
     touchEvent: function touchEvent(direction) {
+        if (this._restart) return;
+        this._restart = false;
         switch (direction) {
             case DIRECTION.RIGHT:
             case DIRECTION.LEFT:
@@ -157,6 +154,8 @@ cc.Class({
         }
     },
     mouseEvent: function mouseEvent(direction) {
+        if (this._restart) return;
+        this._restart = false;
         switch (direction) {
             case DIRECTION.RIGHT:
             case DIRECTION.LEFT:
@@ -248,6 +247,7 @@ cc.Class({
         }
     },
     clickRestart: function clickRestart() {
+        this._restart = true;
         ARR_BLOCK = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]];
         this.initObj();
     },
