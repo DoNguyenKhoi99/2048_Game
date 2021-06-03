@@ -31,11 +31,11 @@ cc.Class({
         recored: cc.Label,
         winGame: cc.Node,
         loseGame: cc.Node,
-        _isChange: false
+        _isChange: false,
+        _restart: false
     },
 
     onLoad: function onLoad() {
-        //cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         this.initObj();
         this.eventHandler();
     },
@@ -44,7 +44,6 @@ cc.Class({
         this.winGame.active = false;
         this._showWinLose = false;
         this.score.string = 0;
-        this.initBlock();
         this.addNum();
         this.addNum();
     },
@@ -131,9 +130,7 @@ cc.Class({
         }
     },
     reflectCLick: function reflectCLick() {
-        var startVec = this._startPoint;
-        var endVec = this._endPoint;
-        var pointsVec = endVec.sub(startVec);
+        var pointsVec = this._endPoint.sub(this._startPoint);
         var vecLength = pointsVec.mag();
         if (vecLength > MIN_LENGTH) {
             if (Math.abs(pointsVec.x) > Math.abs(pointsVec.y)) {
@@ -144,6 +141,8 @@ cc.Class({
         }
     },
     touchEvent: function touchEvent(direction) {
+        if (this._restart) return;
+        this._restart = false;
         switch (direction) {
             case DIRECTION.RIGHT:
             case DIRECTION.LEFT:
@@ -157,6 +156,9 @@ cc.Class({
         }
     },
     mouseEvent: function mouseEvent(direction) {
+        if (this._restart) return;
+        this._restart = false;
+        cc.error("click");
         switch (direction) {
             case DIRECTION.RIGHT:
             case DIRECTION.LEFT:
@@ -248,6 +250,7 @@ cc.Class({
         }
     },
     clickRestart: function clickRestart() {
+        this._restart = true;
         ARR_BLOCK = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]];
         this.initObj();
     },

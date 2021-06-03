@@ -30,6 +30,7 @@ cc.Class({
         winGame: cc.Node,
         loseGame: cc.Node,
         _isChange: false,
+        _restart: false,
     },
 
     onLoad() {
@@ -133,9 +134,7 @@ cc.Class({
     },
 
     reflectCLick() {
-        let startVec = this._startPoint;
-        let endVec = this._endPoint;
-        let pointsVec = endVec.sub(startVec);
+        let pointsVec = this._endPoint.sub(this._startPoint);
         let vecLength = pointsVec.mag();
         if (vecLength > MIN_LENGTH) {
             if (Math.abs(pointsVec.x) > Math.abs(pointsVec.y)) {
@@ -149,6 +148,8 @@ cc.Class({
     },
 
     touchEvent(direction) {
+        if(this._restart) return;
+        this._restart = false;
         switch (direction) {
             case DIRECTION.RIGHT: 
             case DIRECTION.LEFT:
@@ -163,6 +164,8 @@ cc.Class({
     },
  
     mouseEvent(direction) {
+        if(this._restart) return;
+        this._restart = false;
         cc.error("click");
         switch (direction) {
             case DIRECTION.RIGHT: 
@@ -263,6 +266,7 @@ cc.Class({
     },
 
     clickRestart() {
+        this._restart = true;
         ARR_BLOCK = [[0,0,0,0], [0,0,0,0],
                      [0,0,0,0], [0,0,0,0]];
         this.initObj();
