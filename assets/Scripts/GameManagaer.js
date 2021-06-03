@@ -33,7 +33,6 @@ cc.Class({
     },
 
     onLoad() {
-        //cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         this.initObj();
         this.eventHandler();
     },
@@ -43,7 +42,6 @@ cc.Class({
         this.winGame.active = false;
         this._showWinLose = false;
         this.score.string = 0; 
-        this.initBlock();
         this.addNum();
         this.addNum();
     },
@@ -165,6 +163,7 @@ cc.Class({
     },
  
     mouseEvent(direction) {
+        cc.error("click");
         switch (direction) {
             case DIRECTION.RIGHT: 
             case DIRECTION.LEFT:

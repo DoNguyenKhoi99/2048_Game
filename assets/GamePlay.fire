@@ -65,17 +65,17 @@
         "__id__": 5
       },
       {
-        "__id__": 42
+        "__id__": 43
       },
       {
-        "__id__": 32
+        "__id__": 33
       }
     ],
     "_active": true,
     "_level": 1,
     "_components": [
       {
-        "__id__": 52
+        "__id__": 53
       }
     ],
     "_prefab": null,
@@ -159,7 +159,7 @@
       "__type__": "cc.Vec3",
       "x": 0,
       "y": 0,
-      "z": 519.6152422706632
+      "z": 519.8304443664831
     },
     "_scale": {
       "__type__": "cc.Vec3",
@@ -245,7 +245,7 @@
     "_level": 2,
     "_components": [
       {
-        "__id__": 31
+        "__id__": 32
       }
     ],
     "_prefab": null,
@@ -1389,7 +1389,11 @@
     "_enabled": true,
     "duration": 0.1,
     "zoomScale": 1.2,
-    "clickEvents": [],
+    "clickEvents": [
+      {
+        "__id__": 31
+      }
+    ],
     "_N$interactable": true,
     "_N$enableAutoGrayEffect": false,
     "_N$transition": 1,
@@ -1460,6 +1464,16 @@
     "_id": "d8LUzz3axMU6FmLfDxMWps"
   },
   {
+    "__type__": "cc.ClickEvent",
+    "target": {
+      "__id__": 5
+    },
+    "component": "",
+    "_componentId": "016acPX4gdMY7UAGkEsBhhU",
+    "handler": "clickRestart",
+    "customEventData": ""
+  },
+  {
     "__type__": "016acPX4gdMY7UAGkEsBhhU",
     "_name": "",
     "_objFlags": 0,
@@ -1480,10 +1494,10 @@
       "__id__": 20
     },
     "winGame": {
-      "__id__": 32
+      "__id__": 33
     },
     "loseGame": {
-      "__id__": 42
+      "__id__": 43
     },
     "_isChange": false,
     "_id": "a0gETN2uNEr4BB1NPa8GPv"
@@ -1497,13 +1511,13 @@
     },
     "_children": [
       {
-        "__id__": 33
+        "__id__": 34
       },
       {
-        "__id__": 36
+        "__id__": 37
       },
       {
-        "__id__": 38
+        "__id__": 39
       }
     ],
     "_active": false,
@@ -1557,17 +1571,17 @@
     "_name": "Overlay",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 32
+      "__id__": 33
     },
     "_children": [],
     "_active": true,
     "_level": 3,
     "_components": [
       {
-        "__id__": 34
+        "__id__": 35
       },
       {
-        "__id__": 35
+        "__id__": 36
       }
     ],
     "_prefab": null,
@@ -1618,7 +1632,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 33
+      "__id__": 34
     },
     "_enabled": true,
     "_materials": [
@@ -1650,7 +1664,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 33
+      "__id__": 34
     },
     "_enabled": true,
     "_id": "357e1OsOROHI6JQ3WUxAn/"
@@ -1660,14 +1674,14 @@
     "_name": "New Label",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 32
+      "__id__": 33
     },
     "_children": [],
     "_active": true,
     "_level": 3,
     "_components": [
       {
-        "__id__": 37
+        "__id__": 38
       }
     ],
     "_prefab": null,
@@ -1718,7 +1732,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 36
+      "__id__": 37
     },
     "_enabled": true,
     "_materials": [
@@ -1748,17 +1762,17 @@
     "_name": "btnRestart",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 32
+      "__id__": 33
     },
     "_children": [],
     "_active": true,
     "_level": 3,
     "_components": [
       {
-        "__id__": 39
+        "__id__": 40
       },
       {
-        "__id__": 40
+        "__id__": 41
       }
     ],
     "_prefab": null,
@@ -1809,7 +1823,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 38
+      "__id__": 39
     },
     "_enabled": true,
     "_materials": [
@@ -1841,14 +1855,14 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 38
+      "__id__": 39
     },
     "_enabled": true,
     "duration": 0.1,
     "zoomScale": 1.2,
     "clickEvents": [
       {
-        "__id__": 41
+        "__id__": 42
       }
     ],
     "_N$interactable": true,
@@ -1904,7 +1918,7 @@
     "hoverSprite": null,
     "_N$disabledSprite": null,
     "_N$target": {
-      "__id__": 38
+      "__id__": 39
     },
     "_id": "e14LN9dEtJT7hZPFP0duVW"
   },
@@ -1927,13 +1941,13 @@
     },
     "_children": [
       {
-        "__id__": 43
+        "__id__": 44
       },
       {
-        "__id__": 46
+        "__id__": 47
       },
       {
-        "__id__": 48
+        "__id__": 49
       }
     ],
     "_active": false,
@@ -1987,17 +2001,17 @@
     "_name": "Overlay",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 42
+      "__id__": 43
     },
     "_children": [],
     "_active": true,
     "_level": 3,
     "_components": [
       {
-        "__id__": 44
+        "__id__": 45
       },
       {
-        "__id__": 45
+        "__id__": 46
       }
     ],
     "_prefab": null,
@@ -2048,7 +2062,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 43
+      "__id__": 44
     },
     "_enabled": true,
     "_materials": [
@@ -2080,7 +2094,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 43
+      "__id__": 44
     },
     "_enabled": true,
     "_id": "a3WdmXGodAY5mqv8RlZPLs"
@@ -2090,14 +2104,14 @@
     "_name": "New Label",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 42
+      "__id__": 43
     },
     "_children": [],
     "_active": true,
     "_level": 3,
     "_components": [
       {
-        "__id__": 47
+        "__id__": 48
       }
     ],
     "_prefab": null,
@@ -2148,7 +2162,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 46
+      "__id__": 47
     },
     "_enabled": true,
     "_materials": [
@@ -2178,17 +2192,17 @@
     "_name": "btnRestart",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 42
+      "__id__": 43
     },
     "_children": [],
     "_active": true,
     "_level": 3,
     "_components": [
       {
-        "__id__": 49
+        "__id__": 50
       },
       {
-        "__id__": 50
+        "__id__": 51
       }
     ],
     "_prefab": null,
@@ -2239,7 +2253,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 48
+      "__id__": 49
     },
     "_enabled": true,
     "_materials": [
@@ -2271,14 +2285,14 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 48
+      "__id__": 49
     },
     "_enabled": true,
     "duration": 0.1,
     "zoomScale": 1.2,
     "clickEvents": [
       {
-        "__id__": 51
+        "__id__": 52
       }
     ],
     "_N$interactable": true,
@@ -2334,7 +2348,7 @@
     "hoverSprite": null,
     "_N$disabledSprite": null,
     "_N$target": {
-      "__id__": 48
+      "__id__": 49
     },
     "_id": "c7sMWCJrdAH7/ZIXoHGg1y"
   },
