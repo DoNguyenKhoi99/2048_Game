@@ -26,14 +26,14 @@ cc.Class({
         mainGame: cc.Node,
         block: cc.Prefab,
         score: cc.Label,
-        recored: cc.Label,
+        record: cc.Label,
         winGame: cc.Node,
         loseGame: cc.Node,
         _isChange: false,
     },
 
     onLoad() {
-        //cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
+        this.getScoreStorge();
         this.initObj();
         this.eventHandler();
     },
@@ -261,6 +261,7 @@ cc.Class({
                 }
             }
         }
+        this.checkScore()
     },
 
     clickRestart() {
@@ -336,10 +337,31 @@ cc.Class({
         }
     },
 
+     getScoreStorge() {
+        let scoreStorge = cc.sys.localStorage.getItem('bestScore');
+        if (scoreStorge !== null) {
+            this.record.string = JSON.parse(scoreStorge);
+        } else {
+            this.record.string = 0;
+        }
+        
+    },
+
+    checkScore() {
+        let newScore = parseInt(this.score.string);
+        if (newScore > this.record.string) {
+            cc.sys.localStorage.setItem('bestScore', JSON.stringify(newScore));
+            cc.log("123")
+            this.record.string = newScore;
+        }
+    },
+
     update() {
         this.checkWin();
         if(this.checkLose()) {
             this.loseGame.active = true;
         };
     },
+
+
 });
