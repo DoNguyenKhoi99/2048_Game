@@ -236,6 +236,7 @@ cc.Class({
             for (var col = 0; col < GAME_CONFIG.COL; col++) {
                 if (ARR_BLOCK[row][col] === 2048) {
                     this.winGame.active = true;
+                    this.checkScore();
                     return;
                 }
             }
@@ -337,6 +338,7 @@ cc.Class({
         this.checkWin();
         if (this.checkLose()) {
             this.loseGame.active = true;
+            this.checkScore();
         };
     }
 });
