@@ -30,10 +30,14 @@ cc.Class({
         winGame: cc.Node,
         loseGame: cc.Node,
         _isChange: false,
+        _restart: false,
     },
 
     onLoad() {
+<<<<<<< HEAD
         this.getScoreStorge();
+=======
+>>>>>>> master
         this.initObj();
         this.eventHandler();
     },
@@ -41,9 +45,7 @@ cc.Class({
     initObj() {
         this.loseGame.active = false;
         this.winGame.active = false;
-        this._showWinLose = false;
         this.score.string = 0; 
-        this.initBlock();
         this.addNum();
         this.addNum();
     },
@@ -86,8 +88,7 @@ cc.Class({
 
     eventHandler() {
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
-
-        if (cc.sys.isMobile) {
+        if (cc.sys.IPAD || cc.sys.isMobile) {
             this.mainGame.on("touchstart", (event) => {
                 this._startPoint = event.getLocation();
             })
@@ -100,7 +101,7 @@ cc.Class({
                 this.reflectTouch();
             })
         }
-        if (cc.sys.IPAD || cc.sys.DESKTOP_BROWSER) {
+        if (cc.sys.DESKTOP_BROWSER) {
             this.mainGame.on("mousedown", (event) => {
                 this._isCLick = false;
                 this._startPoint = event.getLocation();
@@ -135,9 +136,7 @@ cc.Class({
     },
 
     reflectCLick() {
-        let startVec = this._startPoint;
-        let endVec = this._endPoint;
-        let pointsVec = endVec.sub(startVec);
+        let pointsVec = this._endPoint.sub(this._startPoint);
         let vecLength = pointsVec.mag();
         if (vecLength > MIN_LENGTH) {
             if (Math.abs(pointsVec.x) > Math.abs(pointsVec.y)) {
@@ -151,6 +150,8 @@ cc.Class({
     },
 
     touchEvent(direction) {
+        if(this._restart) return;
+        this._restart = false;
         switch (direction) {
             case DIRECTION.RIGHT: 
             case DIRECTION.LEFT:
@@ -165,6 +166,8 @@ cc.Class({
     },
  
     mouseEvent(direction) {
+        if(this._restart) return;
+        this._restart = false;
         switch (direction) {
             case DIRECTION.RIGHT: 
             case DIRECTION.LEFT:
@@ -265,6 +268,7 @@ cc.Class({
     },
 
     clickRestart() {
+        this._restart = true;
         ARR_BLOCK = [[0,0,0,0], [0,0,0,0],
                      [0,0,0,0], [0,0,0,0]];
         this.initObj();
