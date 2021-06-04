@@ -38,14 +38,15 @@ cc.Class({
         this.initObj();
         this.eventHandler();
         this.getScoreStorge();
+        this.score.string = 0; 
     },
 
     initObj() {
         this.loseGame.active = false;
         this.winGame.active = false;
-        this.score.string = 0; 
         this.addNum();
         this.addNum();
+        this._restart = false;
     },
 
     initBlock() {
@@ -118,9 +119,7 @@ cc.Class({
     },
 
     reflectTouch() {
-        let startVec = this._startPoint;
-        let endVec = this._endPoint;
-        let pointsVec = endVec.sub(startVec);
+        let pointsVec = this._endPoint.sub(this._startPoint);
         let vecLength = pointsVec.mag();
         if (vecLength > MIN_LENGTH) {
             if (Math.abs(pointsVec.x) > Math.abs(pointsVec.y)) {
@@ -264,6 +263,8 @@ cc.Class({
 
     clickRestart() {
         this._restart = true;
+        this._score = 0;
+        this.score.string = 0; 
         ARR_BLOCK = [[0,0,0,0], [0,0,0,0],
                      [0,0,0,0], [0,0,0,0]];
         this.initObj();

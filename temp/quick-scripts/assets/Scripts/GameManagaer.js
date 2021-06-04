@@ -40,13 +40,14 @@ cc.Class({
         this.initObj();
         this.eventHandler();
         this.getScoreStorge();
+        this.score.string = 0;
     },
     initObj: function initObj() {
         this.loseGame.active = false;
         this.winGame.active = false;
-        this.score.string = 0;
         this.addNum();
         this.addNum();
+        this._restart = false;
     },
     initBlock: function initBlock() {
         this.mainGame.removeAllChildren();
@@ -117,9 +118,7 @@ cc.Class({
         }
     },
     reflectTouch: function reflectTouch() {
-        var startVec = this._startPoint;
-        var endVec = this._endPoint;
-        var pointsVec = endVec.sub(startVec);
+        var pointsVec = this._endPoint.sub(this._startPoint);
         var vecLength = pointsVec.mag();
         if (vecLength > MIN_LENGTH) {
             if (Math.abs(pointsVec.x) > Math.abs(pointsVec.y)) {
@@ -247,6 +246,8 @@ cc.Class({
     },
     clickRestart: function clickRestart() {
         this._restart = true;
+        this._score = 0;
+        this.score.string = 0;
         ARR_BLOCK = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]];
         this.initObj();
     },
