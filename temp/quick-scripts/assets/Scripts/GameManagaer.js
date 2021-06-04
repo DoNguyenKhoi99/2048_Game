@@ -247,7 +247,6 @@ cc.Class({
     clickRestart: function clickRestart() {
         this._restart = true;
         this._score = 0;
-        this.score.string = 0;
         ARR_BLOCK = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]];
         this.initObj();
     },
